@@ -53,3 +53,115 @@ const state = {
   ],
   cart: []
 };
+
+const storeItemList = document.querySelector('.store--item-list')
+const cartItemList = document.querySelector('.cart--item-list')
+const total = document.querySelector('.total-number')
+
+function renderStoreItems() {
+  state.items.forEach((item) => {
+
+    const li = document.createElement('li');
+
+    const divs = document.createElement('div');
+    divs.className = 'store--item-icon';
+    li.appendChild(divs);
+
+    const img = document.createElement('img');
+    img.src = `assets/icons/${item.id}.svg`;
+    img.alt = item.name;
+    divs.appendChild(img);
+
+    const button = document.createElement('button');
+    button.textContent = 'Add to cart';
+    button.addEventListener('click', () => {
+      addItemToCart(item)
+    })
+    li.appendChild(button);
+
+
+    storeItemList.appendChild(li);
+
+  }
+  )
+}
+
+function renderCartItems(){
+
+  cartItemList.innerHTML = ''; // Clear the cart before re-rendering
+  state.cart.forEach((item) => {
+
+    const li = document.createElement('li')
+
+    const img = document.createElement('img')
+    img.className = 'cart--item-icon'
+    img.src = `assets/icons/${item.id}.svg`
+    img.alt = item.name 
+    li.appendChild(img)
+
+    const p = document.createElement('p')
+    p.textContent = item.name
+    li.appendChild(p)
+
+    const decButton = document.createElement('button')
+    decButton.className = "quantity-btn remove-btn center"
+    decButton.textContent = "-"
+    decButton.addEventListener('click',() => {
+      decrementItem(item)
+    })
+    li.appendChild(decButton)
+
+    const span = document.createElement('span')
+    span.className = 'quantity-text center'
+    span.textContent = item.quantity 
+    li.appendChild(span)
+
+    const incButton = document.createElement('button')
+    incButton.className = "quantity-btn add-btn center"
+    incButton.textContent = "+"
+    incButton.addEventListener('click',() => {
+      addItemToCart(item)
+    })
+    li.appendChild(incButton)
+    
+    cartItemList.appendChild(li)
+  })
+}
+
+function addItemToCart(item) {
+  const targetItem = state.cart.find((cartItem) => cartItem.id === item.id)
+
+  if (targetItem) {
+    targetItem.quantity += 1
+  } else {
+    state.cart.push({ ...item, quantity: 1 })
+  }
+  renderCartItems()
+  calculateTotal()
+}
+
+function decrementItem(item){
+  const targetItem = state.cart.find((cartItem)=> cartItem.id === item.id)
+  targetItem.quantity --
+
+  if(targetItem.quantity === 0){
+    state.cart.splice(state.cart.indexOf(targetItem),1)
+    delete targetItem.quantity
+  }
+  renderCartItems()
+  calculateTotal()
+}
+
+function calculateTotal() {
+  let totalA = 0
+
+  state.cart.forEach((item) => {
+    totalA += item.price * item.quantity
+  })
+  total.textContent = `£${totalA.toFixed(2)}` 
+}
+
+
+
+renderStoreItems();
+renderCartItems()
