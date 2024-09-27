@@ -13,21 +13,31 @@
 
 <body>
   <header id="store">
-    <div class="dropdown">
-    <button onclick={myFunction()} class="dropbtn">Filter</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#Berries" class="dropdown-link" onclick="filterFunction('berry')">
-        Berries
-      </a>
-        <a href="#Fruits" class="dropdown-link" onclick="filterFunction('fruit')">
-        Fruits
-      </a>
-        <a href="#Vegitables" class="dropdown-link" onclick="filterFunction('vegitable')">
-        Vegitables
-      </a>
-        <a href="#All" class="dropdown-link" onclick="filterFunction('All')">
-        All
-      </a>
+    <div class="button-container">
+      <div class="dropdown">
+        <button onclick={myFunction()} class="dropbtn">Filter</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#Berries" class="dropdown-link" onclick="filterFunction('berry')">
+            Berries
+          </a>
+          <a href="#Fruits" class="dropdown-link" onclick="filterFunction('fruit')">
+            Fruits 
+          </a>
+          <a href="#Vegitables" class="dropdown-link" onclick="filterFunction('vegitable')">
+            Vegitables
+          </a>
+          <a href="#All" class="dropdown-link" onclick="filterFunction('All')">
+            All
+          </a>
+        </div>
+      </div>
+      <div class="sort">
+        <button onclick="myFunction1()" class="dropsortbrn">Sort</button>
+        <div id="mySortDropdown" class="sortdropdown-content">
+          <a href="#Alphabetically" class="sort-dropdown-link" onclick="sortFunction('byAlphabet')">byAlphabet</a>
+          <a href="#Price" class="sort-dropdown-link" 
+          onclick="sortFunction('byPrice')">byPrice</a>
+        </div>
       </div>
     </div>
     <h1>Greengrocers</h1>

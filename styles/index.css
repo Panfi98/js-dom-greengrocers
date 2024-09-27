@@ -182,20 +182,30 @@ button {
     border-bottom: 2px solid #00675b;
   }
 }
+.button-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;            
+  gap: 1rem;                      
+}
 
 /* Dropdown Button */
-.dropbtn {
+.dropbtn, .dropsortbrn {
   background-color: #04AA6D;
   color: white;
-  padding: 16px;
+  padding: 16px;                 
   font-size: 16px;
   border: none;
   cursor: pointer;
+  flex: 1;                      
+  margin: 0;                    
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn:hover, .dropbtn:focus, 
+.dropsortbrn:hover, .dropsortbrn:focus {
   background-color: #3e8e41;
+ 
 }
 
 /* The search field */
@@ -214,13 +224,13 @@ button {
 #myInput:focus {outline: 3px solid #ddd;}
 
 /* The container <div> - needed to position the dropdown content */
-.dropdown {
+.dropdown, .sortdropdown-content {
   position: relative;
   display: inline-block;
 }
 
 /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+.dropdown-content, .sortdropdown-content  {
   display: none;
   position: absolute;
   background-color: #f6f6f6;
@@ -230,7 +240,7 @@ button {
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content a, .sortdropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -238,7 +248,7 @@ button {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover, .sortdropdown-content a:hover {background-color: #f1f1f1}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
