@@ -3,52 +3,63 @@ const state = {
     {
       id: "001-beetroot",
       name: "beetroot",
-      price: 0.35
+      price: 0.35,
+      type: 'vegitable'
     },
     {
       id: "002-carrot",
       name: "carrot",
-      price: 0.35
+      price: 0.35,
+      type: 'vegitable'
     },
     {
       id: "003-apple",
       name: "apple",
-      price: 0.35
+      price: 0.35,
+      type:'fruit'
+
     },
     {
       id: "004-apricot",
       name: "apricot",
-      price: 0.35
+      price: 0.35,
+      type:'fruit'
     },
     {
       id: "005-avocado",
       name: "avocado",
-      price: 0.35
+      price: 0.35,
+      type: 'vegitable'
     },
     {
       id: "006-bananas",
       name: "bananas",
-      price: 0.35
+      price: 0.35,
+      type:'fruit'
     },
     {
       id: "007-bell-pepper",
       name: "bell pepper",
-      price: 0.35
+      price: 0.35,
+      type: 'vegitable'
     },
     {
       id: "008-berry",
       name: "berry",
-      price: 0.35
+      price: 0.35,
+      type: 'berry'
     },
     {
       id: "009-blueberry",
       name: "blueberry",
-      price: 0.35
+      price: 0.35,
+      type: 'berry'
     },
     {
       id: "010-eggplant",
       name: "eggplant",
-      price: 0.35
+      price: 0.35,
+      type: 'vegitable'
     }
   ],
   cart: []
@@ -58,32 +69,62 @@ const storeItemList = document.querySelector('.store--item-list')
 const cartItemList = document.querySelector('.cart--item-list')
 const total = document.querySelector('.total-number')
 
-function renderStoreItems() {
-  state.items.forEach((item) => {
-
-    const li = document.createElement('li');
-
-    const divs = document.createElement('div');
-    divs.className = 'store--item-icon';
-    li.appendChild(divs);
-
-    const img = document.createElement('img');
-    img.src = `assets/icons/${item.id}.svg`;
-    img.alt = item.name;
-    divs.appendChild(img);
-
-    const button = document.createElement('button');
-    button.textContent = 'Add to cart';
-    button.addEventListener('click', () => {
-      addItemToCart(item)
-    })
-    li.appendChild(button);
-
-
-    storeItemList.appendChild(li);
-
+function renderStoreItems(type = 'All') {
+  if (type === 'All'){
+    
+    state.items.forEach((item) => {
+  
+      const li = document.createElement('li');
+  
+      const divs = document.createElement('div');
+      divs.className = 'store--item-icon';
+      li.appendChild(divs);
+  
+      const img = document.createElement('img');
+      img.src = `assets/icons/${item.id}.svg`;
+      img.alt = item.name;
+      divs.appendChild(img);
+  
+      const button = document.createElement('button');
+      button.textContent = 'Add to cart';
+      button.addEventListener('click', () => {
+        addItemToCart(item)
+      })
+      li.appendChild(button);
+  
+  
+      storeItemList.appendChild(li);
+  
+    }
+    )
   }
-  )
+  else
+  {
+    state.items.filter(item => item.type === type).forEach(item => {
+  
+      const li = document.createElement('li');
+  
+      const divs = document.createElement('div');
+      divs.className = 'store--item-icon';
+      li.appendChild(divs);
+  
+      const img = document.createElement('img');
+      img.src = `assets/icons/${item.id}.svg`;
+      img.alt = item.name;
+      divs.appendChild(img);
+  
+      const button = document.createElement('button');
+      button.textContent = 'Add to cart';
+      button.addEventListener('click', () => {
+        addItemToCart(item)
+      })
+      li.appendChild(button);
+  
+  
+      storeItemList.appendChild(li);
+    }
+    )
+  }
 }
 
 function renderCartItems(){
@@ -146,7 +187,6 @@ function decrementItem(item){
 
   if(targetItem.quantity === 0){
     state.cart.splice(state.cart.indexOf(targetItem),1)
-    delete targetItem.quantity
   }
   renderCartItems()
   calculateTotal()
@@ -162,6 +202,13 @@ function calculateTotal() {
 }
 
 
+function filterFunction(type) {
+  storeItemList.innerHTML = ''; 
+  renderStoreItems(type)
+}
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
 
 renderStoreItems();
 renderCartItems()
