@@ -252,3 +252,58 @@ button {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+
+/* Styling the form labels */
+label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Styling the form inputs */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #f6f6f6;
+}
+
+/* Focus state for inputs */
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: 3px solid #ddd;
+}
+
+.container123 {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* Button styling similar to the provided button styles */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+
+}
+
+/* Hover effect for button */
+.registerbtn:hover {
+  background-color: #3e8e41;
+}
+
+/* Horizontal rule styling */
+hr {
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}

@@ -21,7 +21,7 @@
             Berries
           </a>
           <a href="#Fruits" class="dropdown-link" onclick="filterFunction('fruit')">
-            Fruits 
+            Fruits
           </a>
           <a href="#Vegitables" class="dropdown-link" onclick="filterFunction('vegitable')">
             Vegitables
@@ -35,17 +35,16 @@
         <button onclick="myFunction1()" class="dropsortbrn">Sort</button>
         <div id="mySortDropdown" class="sortdropdown-content">
           <a href="#Alphabetically" class="sort-dropdown-link" onclick="sortFunction('byAlphabet')">byAlphabet</a>
-          <a href="#Price" class="sort-dropdown-link" 
-          onclick="sortFunction('byPrice')">byPrice</a>
+          <a href="#Price" class="sort-dropdown-link" onclick="sortFunction('byPrice')">byPrice</a>
         </div>
       </div>
     </div>
     <h1>Greengrocers</h1>
     <ul class="item-list store--item-list">
-      
+
     </ul>
   </header>
-  
+
   <main id="cart">
     <h2>Your Cart</h2>
     <div class="cart--item-list-container">
@@ -53,27 +52,41 @@
         <!-- Take a look at cart-item.html -->
       </ul>
     </div>
-    
+
     <div class="total-section">
       <div>
         <h3>Total</h3>
       </div>
-      
+
       <div>
         <span class="total-number">£0.00</span>
       </div>
     </div>
   </main>
-  <div>
-    Icons made by
-    <a href="https://www.flaticon.com/authors/icongeek26" title="Icongeek26">
-      Icongeek26
-    </a>
-    from
-    <a href="https://www.flaticon.com/" title="Flaticon">
-      www.flaticon.com
-    </a>
-  </div>
+  <form id="create-item-form" class="form-stack">
+    <div class="container123">
+
+      <hr>
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter name" name="name" id="itemName" required>
+
+      <label for="price"><b>Price</b></label>
+      <input type="text" placeholder="Enter Price" name="price" id="itemPrice" required>
+
+      <label for="type"><b>Type</b></label>
+      <input type="text" placeholder="Type" name="psw-repeat" id="itemType" required>
+
+      <button  type="submit" class="registerbtn">Add Item</button>
+      <hr>
+
+      
+    </div>
+
+    <div class="container signin">
+
+    </div>
+  </form>
+
 </body>
 
 </html>

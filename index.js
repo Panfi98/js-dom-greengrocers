@@ -62,12 +62,38 @@ const state = {
       type: 'vegitable'
     }
   ],
-  cart: []
+  cart: [],
+  typeFlag: {isOn:false, type:'All'}
 };
 
 const storeItemList = document.querySelector('.store--item-list')
 const cartItemList = document.querySelector('.cart--item-list')
 const total = document.querySelector('.total-number')
+const itemForm = document.querySelector('#create-item-form')
+
+const highestId = state.items.reduce((maxId, item) => {
+  const itemNumber = parseInt(item.id.split('-')[0]);
+  return itemNumber > maxId ? itemNumber : maxId;
+}, 0);
+
+itemForm.addEventListener("submit", (event) => {
+  event.preventDefault(); 
+  const nameInput = itemForm.querySelector("#itemName").value;
+  const typeInput = itemForm.querySelector("#itemType").value;
+  const priceInput = parseFloat(itemForm.querySelector("#itemPrice").value);
+
+  const newId = String(highestId + 1).padStart(3, '0');
+
+  state.items.push({
+    id: `${newId}-${nameInput.toLowerCase().replace(/\s+/g, '-')}`,
+    name: nameInput,
+    price: priceInput,
+    type: typeInput
+  });
+  storeItemList.innerHTML = '';
+  renderStoreItems();
+});
+
 
 function renderStoreItems(type = 'All') {
 
@@ -120,8 +146,9 @@ function renderStoreItems(type = 'All') {
       })
       li.appendChild(button);
 
-
       storeItemList.appendChild(li);
+
+      
     }
     )
   }
@@ -131,13 +158,13 @@ function sortFunction(order) {
   if (order === 'byAlphabet') {
     storeItemList.innerHTML = '';
     state.items.sort((a, b) => a.name.localeCompare(b.name))
-    renderStoreItems()
+    renderStoreItems(state.typeFlag.type)
   } else if (order === 'byPrice'){
     storeItemList.innerHTML ='';
     state.items.sort((a,b) => a.price - b.price)
-    renderStoreItems()
+    renderStoreItems(state.typeFlag.type)
   } else {
-    renderStoreItems()
+    renderStoreItems(state.typeFlag.type)
   }
 }
 
@@ -219,6 +246,8 @@ function calculateTotal() {
 function filterFunction(type) {
   storeItemList.innerHTML = '';
   renderStoreItems(type)
+  state.typeFlag.isOn = true
+  state.typeFlag.type = type
 }
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
@@ -227,6 +256,7 @@ function myFunction() {
 function myFunction1() {
   document.getElementById("mySortDropdown").classList.toggle("show")
 }
+
 
 renderStoreItems();
 renderCartItems()
